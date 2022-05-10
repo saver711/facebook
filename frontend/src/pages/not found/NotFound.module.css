@@ -1,0 +1,27 @@
+.not_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-forth);
+    color: var(--color-primary);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.not_container h2{
+    font-size: 8rem;
+    color: var(--light-danger);
+}
+
+.not_container p {
+    font-size: 1rem;
+}
+
+.not_container a{
+    color: var(--blue-color);
+    font-size: 1rem;
+}
