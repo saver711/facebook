@@ -116,7 +116,7 @@ export const LoginForm = () => {
                     name="password"
                     placeholder="Password"
                   />
-                  <button type="submit" className={`blue_btn`}>
+                  <button type="submit" className="blue_btn btn">
                     Log In
                   </button>
                 </Form>
@@ -129,7 +129,7 @@ export const LoginForm = () => {
 
             {error && <p className="error">{error}</p>}
             <div className={classes.sign_splitter}></div>
-            <Link to="register" className="blue_btn open_signup">
+            <Link to="register" className="blue_btn btn open_signup">
               Create Account
             </Link>
           </div>

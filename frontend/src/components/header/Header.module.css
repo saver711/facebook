@@ -59,7 +59,14 @@ header {
 }
 .active svg {
   transform: translateY(1px) translateX(-1px);
+  fill: #1b74e4;
 }
+
+.active_link {
+  background: var(--light-blue-color);
+  color: var(--blue-color);
+}
+
 .middle_notification {
   position: absolute;
   top: 3px;
@@ -132,17 +139,17 @@ header {
 /*---Header right-----*/
 
 /*---responsive----------*/
-@media (max-width: 1295px) {
+@media (max-width: 1315px) {
   .middle_icon {
     width: 90px;
   }
 }
-@media (max-width: 1130px) {
+@media (max-width: 1230px) {
   .middle_icon {
     width: 70px;
   }
 }
-@media (max-width: 1090px) {
+@media (max-width: 1135px) {
   .search1 {
     width: 40px;
     height: 40px;

@@ -26,7 +26,7 @@ const [magnifierVisible, magnifierVisibleUpdater] = useState(true);
   ///
   /////////// CUSTOM HOOKS
   ///
-  useClickOutside(searchMenuRef, () => hideSearchMenuHandler());
+  useClickOutside(searchMenuRef, () => showSearchMenuUpdater(false))
   ///
   /////////// SIDE EFFECTS
   ///

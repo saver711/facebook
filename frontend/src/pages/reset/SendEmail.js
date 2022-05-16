@@ -58,9 +58,7 @@ export const SendEmail = ({ forwarding, userInfo }) => {
   ///
   return (
     <>
-      <div
-        className={classes.reset_form}
-      >
+      <div className={classes.reset_form}>
         <p className={classes.reset_form_header}>Reset Your Password</p>
         <div className={classes.reset_grid}>
           <div className={classes.reset_left}>
@@ -90,16 +88,16 @@ export const SendEmail = ({ forwarding, userInfo }) => {
           <div>
             <button
               onClick={goBackHandler}
-              className={`gray_btn ${classes.badBtn}`}
+              className={`gray_btn btn ${classes.badBtn}`}
             >
               Not you?
             </button>
-            <button onClick={sendEmailHandler} className="blue_btn">
+            <button onClick={sendEmailHandler} className="blue_btn btn">
               Continue
             </button>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 };

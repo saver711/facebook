@@ -136,8 +136,12 @@
   }
 }
 @media (max-width: 515px) {
+  .white_circle {
+      display: none;
+  
+    }
 .stories {
-    grid-template-columns: repeat(4, 19vw);
+    grid-template-columns: repeat(4, 22vw);
 
   }
   .create_story_card, .story{

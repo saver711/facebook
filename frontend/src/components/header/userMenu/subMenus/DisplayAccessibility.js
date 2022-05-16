@@ -29,6 +29,16 @@ export default function DisplayAccessibility({ visibleUpdater }) {
         <span>On</span>
         <input type="radio" name="dark" id="darkOn" />
       </label>
+      <label htmlFor="automatic" className="hover1">
+        <div>
+          <span>Automatic</span>
+          <p>
+            We’ll automatically adjust the display based on your device’s system
+            settings.
+          </p>
+        </div>
+        <input type="radio" name="dark" id="automatic" />
+      </label>
       <div className={classes.menu_main}>
         <div className="small_circle" style={{ width: "70px", height: "40px" }}>
           <i className="compact_icon"></i>

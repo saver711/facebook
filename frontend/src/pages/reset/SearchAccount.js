@@ -102,10 +102,10 @@ export const SearchAccount = ({ userInfoUpdater, forwarding }) => {
                 <RingLoader loading={loading} size={30} color="#1876f2" />
               </div>
               <div>
-                <Link to="/" className={`gray_btn ${classes.badBtn}`}>
+                <Link to="/" className={`gray_btn btn ${classes.badBtn}`}>
                   Cancel
                 </Link>
-                <button type="submit" className="blue_btn">
+                <button type="submit" className="blue_btn btn">
                   Search
                 </button>
               </div>
@@ -114,5 +114,5 @@ export const SearchAccount = ({ userInfoUpdater, forwarding }) => {
         )}
       </Formik>
     </motion.div>
-  );
+  )
 };

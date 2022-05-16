@@ -301,7 +301,7 @@ export const RegisterForm = ({ title }) => {
                   </p>
                   <div className={classes.reg_btn_wrapper}>
                     {/* MOTION */}
-                    <button type="submit" className="blue_btn open_signup">
+                    <button type="submit" className="blue_btn btn open_signup">
                       Sign Up
                     </button>
                   </div>
@@ -309,7 +309,7 @@ export const RegisterForm = ({ title }) => {
                   {error && <p className="error">{error}</p>}
                   {success && <p className="success">{success}</p>}
                 </Form>
-              );
+              )
             }}
           </Formik>
         </div>

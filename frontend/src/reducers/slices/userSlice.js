@@ -8,17 +8,20 @@ const userSlice = createSlice({
   },
   reducers: {
     userLoginHandler(state, action) {
-      state.userData = action.payload;
+      state.userData = action.payload
     },
     verify(state, action) {
-      state.userData.verified = action.payload;
+      state.userData.verified = action.payload
     },
     logout(state) {
-      state.userData = null;
-      Cookies.set('user', null)
+      state.userData = null
+      Cookies.set("user", null)
+    },
+    updateStatePicture(state, action) {
+      state.userData.picture = action.payload
     },
   },
-});
+})
 
 export const userReducer = userSlice.reducer;
 export const userActions = userSlice.actions;

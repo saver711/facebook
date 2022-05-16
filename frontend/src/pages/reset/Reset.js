@@ -53,9 +53,7 @@ export const Reset = ({title}) => {
   ///
   
   return (
-    <div
-      className={classes.reset}
-    >
+    <div className={classes.reset}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
@@ -68,13 +66,13 @@ export const Reset = ({title}) => {
             <Link to="/profile">
               <img src={user?.picture} alt="user picture" />
             </Link>
-            <button onClick={logoutHandler} className="blue_btn">
+            <button onClick={logoutHandler} className="blue_btn btn">
               Logout
             </button>
           </div>
         ) : (
           <Link to="/login" className={classes.right_reset}>
-            <button className="blue_btn">Login</button>
+            <button className="blue_btn btn">Login</button>
           </Link>
         )}
       </div>
@@ -101,5 +99,5 @@ export const Reset = ({title}) => {
       </div>
       <LoginFooter />
     </div>
-  );
+  )
 };

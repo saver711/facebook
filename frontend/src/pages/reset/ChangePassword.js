@@ -123,10 +123,10 @@ export const ChangePassword = ({userInfo}) => {
                 <RingLoader loading={loading} size={30} color="#1876f2" />
               </div>
               <div>
-                <Link to="/" className={`gray_btn ${classes.badBtn}`}>
+                <Link to="/" className={`gray_btn btn ${classes.badBtn}`}>
                   Cancel
                 </Link>
-                <button type="submit" className="blue_btn">
+                <button type="submit" className="blue_btn btn">
                   Confirm
                 </button>
               </div>
@@ -135,5 +135,5 @@ export const ChangePassword = ({userInfo}) => {
         )}
       </Formik>
     </motion.div>
-  );
+  )
 };

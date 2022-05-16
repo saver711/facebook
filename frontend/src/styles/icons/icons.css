@@ -276,13 +276,13 @@
 }
 .ad_choices_icon {
   background-image: url(../../../public/icons/icons6.png);
-  background-position: 0 -126px;
+  background-position: 0 -131px;
   background-size: auto;
   width: 12px;
   height: 12px;
   background-repeat: no-repeat;
   display: inline-block;
-  transform: translateY(1px);
+  transform: translateY(3.5px);
   -webkit-filter: invert(40%);
 }
 

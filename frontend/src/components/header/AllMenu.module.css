@@ -35,12 +35,12 @@
 
 .all_menu_search {
   background: var(--bg-secondary);
-
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 10px;
   border-radius: 50px;
+  margin-top: 10px;
 }
 .all_menu_search input {
   border: none;
@@ -132,7 +132,6 @@
 /*---responsive----------*/
 
 @media (max-width: 620px) {
-
   .all_menu {
     width: 485px;
   }
@@ -140,7 +139,14 @@
     width: 250px;
   }
 }
-
+@media (min-width: 621px) {
+  .menu_profile {
+    display: none;
+  }
+  .all_menu_search {
+    margin-top: 0;
+  }
+}
 @media (max-width: 505px) {
   .all_menu {
     width: 340px;

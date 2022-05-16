@@ -70,10 +70,7 @@ export const CodeVerification = ({ forwarding, userInfo }) => {
 
   ///
   return (
-    <div
-      transition={{ duration: "0.4" }}
-      className={classes.reset_form}
-    >
+    <div transition={{ duration: "0.4" }} className={classes.reset_form}>
       <p className={classes.reset_form_header}>Code Verification</p>
       <p className={classes.reset_form_text}>
         Please enter the code you received in your email
@@ -98,10 +95,10 @@ export const CodeVerification = ({ forwarding, userInfo }) => {
                 <RingLoader loading={loading} size={30} color="#1876f2" />
               </div>
               <div>
-                <Link to="/" className={`gray_btn ${classes.badBtn}`}>
+                <Link to="/" className={`gray_btn btn ${classes.badBtn}`}>
                   Cancel
                 </Link>
-                <button type="submit" className="blue_btn">
+                <button type="submit" className="blue_btn btn">
                   Continue
                 </button>
               </div>
@@ -110,5 +107,5 @@ export const CodeVerification = ({ forwarding, userInfo }) => {
         )}
       </Formik>
     </div>
-  );
+  )
 };

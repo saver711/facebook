@@ -6,7 +6,7 @@ import { LeftHome } from "../../components/home/left/LeftHome";
 import { Stories } from "../../components/home/stories/Stories";
 import { RightHome } from "../../components/home/right/RightHome";
 import classes from "./Home.module.css";
-import { CreatePost } from "../../components/home/crete post/CreatePost";
+import { CreatePost } from "../../components/crete post/CreatePost";
 import { ActivateForm } from "./ActivateForm";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -115,7 +115,7 @@ export const Activate = ({title}) => {
           loading={loading}
         />
       )} */}
-      <Header />
+      <Header page='home' />
       <LeftHome user={user} />
       <div className={classes.home_middle_container}>
         <div className={classes.home_middle}>

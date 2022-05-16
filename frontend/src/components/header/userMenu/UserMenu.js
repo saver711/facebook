@@ -55,10 +55,10 @@ const logOutHandler = ()=>{
   ///
   return (
     <motion.div
-      initial={{ x: '140vw' }}
-      animate={{ x: '0' }}
-      exit={{ x: "-100vw" }}
-      transition={{duration: '.3'}}
+      initial={{ x: "140vw" }}
+      animate={{ x: "0" }}
+      exit={{ x: "140vw" }}
+      transition={{ duration: ".3" }}
       className={classes.menu}
     >
       {/* Main */}

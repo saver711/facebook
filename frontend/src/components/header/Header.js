@@ -1,16 +1,17 @@
 /////////// IMPORTS
 ///
-import classes from "./Header.module.css";
-import { Link, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState, useRef } from "react";
-import { AllMenu } from "./AllMenu";
-import { useClickOutside } from "../../helpers/clickOutside";
+import classes from "./Header.module.css"
+import { Link, NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { useState, useRef } from "react"
+import { AllMenu } from "./AllMenu"
+import { useClickOutside } from "../../helpers/clickOutside"
 
 import {
   ArrowDown,
   Friends,
   Gaming,
+  Home,
   HomeActive,
   Logo,
   Market,
@@ -19,9 +20,9 @@ import {
   Notifications,
   Search,
   Watch,
-} from "../../svg";
-import { SearchMenu } from "./SearchMenu";
-import { UserMenu } from "./userMenu/UserMenu";
+} from "../../svg"
+import { SearchMenu } from "./SearchMenu"
+import { UserMenu } from "./userMenu/UserMenu"
 ///
 /////////// HELPER FUNCTIONS
 ///
@@ -29,30 +30,36 @@ import { UserMenu } from "./userMenu/UserMenu";
 ///
 /////////// HELPER VARIABLES
 ///
-const color = "#65676b";
+const rest = `hover1 ${classes.middle_icon}`
 ///
-export const Header = () => {
+const color = "#65676b"
+///
+export const Header = ({page}) => {
   /////////// VARIABLES
   ///
-  const allMenuRef = useRef();
-  const userMenu = useRef();
+  const allMenuRef = useRef()
+  const userMenu = useRef()
   ///
   /////////// STATES
   ///
-  const [showSearchMenu, showSearchMenuUpdater] = useState(false);
-  const [allMenuVisibility, allMenuVisibilityUpdater] = useState(false);
-  const [userMenuVisibility, userMenuVisibilityUpdater] = useState(false);
+  const [showSearchMenu, showSearchMenuUpdater] = useState(false)
+  const [allMenuVisibility, allMenuVisibilityUpdater] = useState(false)
+  const [userMenuVisibility, userMenuVisibilityUpdater] = useState(false)
 
-  // header_right icons classes conditionally 
-  const allMenuIconClasses = allMenuVisibility ? `hover1 ${classes.circle_icon} ${classes.active_header}` : `hover1 ${classes.circle_icon}`
+  // header_right icons classes conditionally
+  const allMenuIconClasses = allMenuVisibility
+    ? `hover1 ${classes.circle_icon} ${classes.active_header}`
+    : `hover1 ${classes.circle_icon}`
 
-  const userMenuIconClasses = userMenuVisibility ? `hover1 ${classes.circle_icon} ${classes.active_header}` : `hover1 ${classes.circle_icon}`
+  const userMenuIconClasses = userMenuVisibility
+    ? `hover1 ${classes.circle_icon} ${classes.active_header}`
+    : `hover1 ${classes.circle_icon}`
   ///
   /////////// CUSTOM HOOKS
   ///
-  const user = useSelector((state) => state.userReducer.userData);
-  useClickOutside(allMenuRef, () => allMenuVisibilityUpdater(false));
-  useClickOutside(userMenu, () => userMenuVisibilityUpdater(false));
+  const user = useSelector((state) => state.userReducer.userData)
+  useClickOutside(allMenuRef, () => allMenuVisibilityUpdater(false))
+  useClickOutside(userMenu, () => userMenuVisibilityUpdater(false))
   ///
   /////////// SIDE EFFECTS
   ///
@@ -65,16 +72,16 @@ export const Header = () => {
   /////////// EVENTS
   ///
   const showSearchMenuHandler = () => {
-    showSearchMenuUpdater(true);
-  };
+    showSearchMenuUpdater(true)
+  }
 
   const toggleAllMenuVisibility = () => {
-    allMenuVisibilityUpdater((prevState) => !prevState);
-  };
+    allMenuVisibilityUpdater((prevState) => !prevState)
+  }
 
   const toggleUserMenu = () => {
-    userMenuVisibilityUpdater((prevState) => !prevState);
-  };
+    userMenuVisibilityUpdater((prevState) => !prevState)
+  }
   ///
   /////////// FUNCTIONS
   ///
@@ -108,59 +115,49 @@ export const Header = () => {
       <div className={classes.header_middle}>
         <NavLink
           to="/"
-          className={({ isActive }) => {
-            const active = isActive ? classes.active : "";
-            const rest = `hover1 ${classes.middle_icon}`;
-            return `${active} ${rest}`;
-          }}
+          className={({ isActive }) =>
+            isActive ? `${classes.active} ${rest}` : rest
+          }
         >
-          <HomeActive />
+          {page === 'home' ? <HomeActive /> : <Home />}
         </NavLink>
 
         <NavLink
-          to="friends"
-          className={({ isActive }) => {
-            const active = isActive ? classes.active : "";
-            const rest = `hover1 ${classes.middle_icon}`;
-            return `${active} ${rest}`;
-          }}
+          to="/friends"
+          className={({ isActive }) =>
+            isActive ? `${classes.active} ${rest}` : rest
+          }
         >
           <Friends color={color} />
         </NavLink>
         <NavLink
-          to="watch"
-          className={({ isActive }) => {
-            const active = isActive ? classes.active : "";
-            const rest = `hover1 ${classes.middle_icon}`;
-            return `${active} ${rest}`;
-          }}
+          to="/watch"
+          className={({ isActive }) =>
+            isActive ? `${classes.active} ${rest}` : rest
+          }
         >
           <Watch color={color} />
           <span className={classes.middle_notification}>9+</span>
         </NavLink>
         <NavLink
-          to="market"
-          className={({ isActive }) => {
-            const active = isActive ? classes.active : "";
-            const rest = `hover1 ${classes.middle_icon}`;
-            return `${active} ${rest}`;
-          }}
+          to="/market"
+          className={({ isActive }) =>
+            isActive ? `${classes.active} ${rest}` : rest
+          }
         >
           <Market color={color} />
         </NavLink>
         <NavLink
-          to="gaming"
-          className={({ isActive }) => {
-            const active = isActive ? classes.active : "";
-            const rest = `hover1 ${classes.middle_icon}`;
-            return `${active} ${rest}`;
-          }}
+          to="/gaming"
+          className={({ isActive }) =>
+            isActive ? `${classes.active} ${rest}` : rest
+          }
         >
           <Gaming color={color} />
         </NavLink>
       </div>
       <div className={classes.header_right}>
-        <Link to="profile" className={`hover1 ${classes.profile_link}`}>
+        <Link to="/profile" className={`hover1 ${classes.profile_link} ${page === 'profile' && classes.active_link}`}>
           <img src={user?.picture} alt="user picture" />
           <span>{user?.first_name}</span>
         </Link>
@@ -191,9 +188,9 @@ export const Header = () => {
             <ArrowDown />
           </div>
 
-            {userMenuVisibility && <UserMenu user={user} />}
+          {userMenuVisibility && <UserMenu user={user} />}
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

@@ -105,7 +105,7 @@ export const LeftHome = ({ user }) => {
           name="My Youtube channel"
         />
       </div>
-      <div className={`${classes.fb_copyright}`}>
+      <div className="fb_copyright welcome_footer">
         <Link to="/">Privacy </Link>
         <span>. </span>
         <Link to="/">Terms </Link>
@@ -113,14 +113,15 @@ export const LeftHome = ({ user }) => {
         <Link to="/">Advertising </Link>
         <span>. </span>
         <Link to="/">
-          Ad Choices <i className="ad_choices_icon"></i>{" "}
+          AdChoices <i className="ad_choices_icon"></i>
         </Link>
         <span>. </span>
-        <Link to="/">Cookies </Link><span>. </span>
+        <Link to="/">Cookies </Link>
+        <span>. </span>
         <Link to="/">More </Link>
         <span>. </span> <br />
         Meta © 2022
       </div>
     </div>
-  );
+  )
 };
