@@ -71,7 +71,7 @@ export const Reset = ({title}) => {
             </button>
           </div>
         ) : (
-          <Link to="/login" className={classes.right_reset}>
+          <Link to="/welcome" className={classes.right_reset}>
             <button className="blue_btn btn">Login</button>
           </Link>
         )}
