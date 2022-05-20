@@ -82,7 +82,7 @@ export const ProfilePicture = ({ username, setShow, pRef, photos }) => {
       >
         <div className="box_header">
           <div className="small_circle" onClick={() => setShow(false)}>
-            <i className="exit_icon"></i>
+            <i className="exit_icon invertToWhite"></i>
           </div>
           <span>Update profile picture</span>
         </div>

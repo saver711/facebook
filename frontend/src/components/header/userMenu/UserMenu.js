@@ -64,7 +64,7 @@ const logOutHandler = ()=>{
       {/* Main */}
       {visible === 0 && (
         <div>
-          <Link to="profile" className={`hover3 ${classes.menu_header}`}>
+          <Link to="/profile" className={`hover3 ${classes.menu_header}`}>
             <img src={user?.picture} alt="" />
             <div className={classes.menu_col}>
               <span>

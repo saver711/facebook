@@ -2,18 +2,54 @@ import { useState } from "react"
 import MenuItem from "./MenuItem"
 import classes from "./Post.module.css"
 import { useSelector } from "react-redux"
-export default function PostMenu({ postUserId, imagesLength, setShowMenu }) {
+import { deletePost, postSavingFun } from "../../helpers/postFunction"
+import {saveAs} from 'file-saver'
+
+export default function PostMenu({
+  postId,
+  postUserId,
+  imagesLength,
+  setCheckSaved,
+  checkSaved,
+  images,
+  postRef,
+}) {
   const user = useSelector((state) => state.userReducer.userData)
   const [test, setTest] = useState(postUserId === user?.id)
 
+  const saveHandler = async () => {
+    postSavingFun(postId, user?.token)
+    setCheckSaved((prev) => !prev)
+  }
+
+  const downloadImages = async () => {
+    images?.map((img, i) => saveAs(img.url, `image${i}.png`))
+  }
+
+  const deletePostHandler = async () => {
+    const res = await deletePost(postId, user?.token)
+    res.status === "ok" && postRef.current.remove()
+    
+  }
   return (
     <ul className={classes.post_menu}>
       {test && <MenuItem icon="pin_icon" title="Pin Post" />}
-      <MenuItem
-        icon="save_icon"
-        title="Save Post"
-        subtitle="Add this to your saved items."
-      />
+      <div onClick={saveHandler}>
+        {!checkSaved ? (
+          <MenuItem
+            icon="save_icon"
+            title="Save Post"
+            subtitle="Add this to your saved items."
+          />
+        ) : (
+          <MenuItem
+            icon="unSave_icon"
+            title="Unsave Post"
+            subtitle="Remove this from saved items."
+          />
+        )}
+      </div>
+
       <div className={classes.line}></div>
       {test && <MenuItem icon="edit_icon" title="Edit Post" />}
       {!test && (
@@ -22,7 +58,12 @@ export default function PostMenu({ postUserId, imagesLength, setShowMenu }) {
           title="Turn on notifications for this post"
         />
       )}
-      {imagesLength && <MenuItem icon="download_icon" title="Download" />}
+      {imagesLength && (
+        <div onClick={downloadImages}>
+          <MenuItem icon="download_icon" title="Download" />
+        </div>
+      )}
+
       {imagesLength && (
         <MenuItem icon="fullscreen_icon" title="Enter Fullscreen" />
       )}
@@ -40,11 +81,13 @@ export default function PostMenu({ postUserId, imagesLength, setShowMenu }) {
       )}
       {test && <MenuItem icon="archive_icon" title="Move to archive" />}
       {test && (
-        <MenuItem
-          icon="trash_icon"
-          title="Move to trash"
-          subtitle="items in your trash are deleted after 30 days"
-        />
+        <div onClick={deletePostHandler}>
+          <MenuItem
+            icon="trash_icon"
+            title="Move to trash"
+            subtitle="items in your trash are deleted after 30 days"
+          />
+        </div>
       )}
       {!test && <div className={classes.line}></div>}
       {!test && (

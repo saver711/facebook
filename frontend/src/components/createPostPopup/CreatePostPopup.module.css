@@ -21,6 +21,7 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: var(--color-primary);
 }
 
 .box_privacy {
@@ -33,6 +34,7 @@
   border-radius: 7px;
   background: var(--bg-third);
   cursor: pointer;
+  color: var(--color-primary);
 }
 
 .box_privacy span {
@@ -81,7 +83,7 @@
 }
 
 .post_emojis_wrap img {
-  width: 39px;
+  width: 35px;
   cursor: pointer;
 }
 
@@ -115,6 +117,7 @@
 .addto_text {
   font-weight: 600;
   font-size: 14px;
+  color: var(--color-primary);
 }
 
 
@@ -216,6 +219,8 @@
 
 .add_col span:last-of-type {
   font-size: 12px;
+}
+.add_col span {
   color: var(--color-secondary);
 }
 
@@ -231,6 +236,7 @@
 }
 
 .mobile_text {
+  color: var(--color-primary);
   font-size: 12px;
   font-weight: 600;
 }
@@ -244,6 +250,7 @@
   position: absolute;
   right: 10px;
   cursor: pointer;
+   color: var(--color-primary);
 }
 
 .p0 {

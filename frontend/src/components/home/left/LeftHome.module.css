@@ -2,12 +2,13 @@
   position: fixed;
   z-index: 98;
   margin-top: 58px;
-  left: 6px;
+  left: 0;
+
   max-height: 100vh;
   width: 15vw;
   overflow-y: auto;
   color: var(--color-primary);
-  padding: 15px 0 4rem;
+  padding: 15px 6px 4rem;
 }
 .left_link {
   display: flex;
@@ -26,10 +27,10 @@
   margin-right: 11px;
   vertical-align: -0.25em;
 }
-.left_link span {
+/* .left_link span {
   margin-bottom: 4px;
   margin-left: 1px;
-}
+} */
 .col {
   margin-left: 2px;
   transform: translateY(-2px);
@@ -107,18 +108,28 @@
   .splitter {
     margin: 9px auto;
   }
+  .shortcut_item{
+    padding: 5px;
+  }
 
   .left_home {
     width: 70px;
   }
   .left_link {
     background: var(--bg-third);
-    width: 55px;
-    height: 55px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     display: grid;
     place-items: center;
     margin-bottom: 0.6rem;
+    padding: 5px;
+  }
+  .left_link img{
+    margin-right: 0;
+    width: 100%;
+    height: auto;
+
   }
     .left_link span, .shortcut_item span, .heading, .left_home .left_link .col{
       display: none;

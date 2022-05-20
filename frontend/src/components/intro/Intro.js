@@ -90,6 +90,15 @@ export const Intro = ({ comingDetails, visitor, setOtherName }) => {
   ///
   return (
     <div className="profile_card mrT0">
+      {visible && !visitor && (
+        <EditDetails
+          details={details}
+          handleChange={handleChange}
+          updateDetails={updateDetails}
+          infos={infos}
+          setVisible={setVisible}
+        />
+      )}
       <div className="profile_card_header">Intro</div>
       {details?.bio && !showBio && (
         <div className={classes.info_col}>
@@ -208,15 +217,6 @@ export const Intro = ({ comingDetails, visitor, setOtherName }) => {
         >
           Edit Details
         </button>
-      )}
-      {visible && !visitor && (
-        <EditDetails
-          details={details}
-          handleChange={handleChange}
-          updateDetails={updateDetails}
-          infos={infos}
-          setVisible={setVisible}
-        />
       )}
 
       {!visitor && (

@@ -12,13 +12,19 @@ import PulseLoader from "react-spinners/PulseLoader"
 import { PostError } from "./PostError"
 import dataURItoBlob from "../../helpers/dataURItoBlob"
 import { uploadImages } from "../../helpers/uploadImages"
+import { postCases, profileCases } from "../../helpers/reducers"
 
 ///
 /////////// HELPER FUNCTIONS
 ///
 
 ///
-export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
+export const CreatePostPopup = ({
+  createPostVisibilityUpdater,
+  postsDispatcher,
+  posts,
+  profile,
+}) => {
   /////////// VARIABLES
   ///
   const postPopupRef = useRef()
@@ -47,13 +53,17 @@ export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
   /////////// EVENTS
   ///
   const addPostHandler = async () => {
+    errorUpdater('')
+    
     if (!images.length && !text) {
       errorUpdater("Write something first")
       return
     }
 
+    //background post
     if (background && text) {
       loadingUpdater(true)
+
       const response = await createPost(
         null,
         background,
@@ -62,20 +72,27 @@ export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
         user?.id,
         user?.token
       )
-      loadingUpdater(false)
 
-      if (response !== "ok") {
+      if (response.status !== "ok") {
         errorUpdater(response)
+        loadingUpdater(false)
         return
       }
+      postsDispatcher({
+        type: profile ? profileCases.PROFILE_POSTS : postCases.POST_SUCCESS,
+        payload: [response.data, ...posts],
+      })
+      loadingUpdater(false)
       backgroundUpdater("")
       textUpdater("")
       createPostVisibilityUpdater(false)
       return
     }
 
+    // just text post
     if (!background && text && !images.length) {
       loadingUpdater(true)
+
       const response = await createPost(
         null,
         null,
@@ -84,31 +101,52 @@ export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
         user?.id,
         user?.token
       )
-      loadingUpdater(false)
-
-      if (response !== "ok") {
+      if (response.status !== "ok") {
         errorUpdater(response)
+        loadingUpdater(false)
         return
       }
+
+      postsDispatcher({
+        type: profile ? profileCases.PROFILE_POSTS : postCases.POST_SUCCESS,
+        payload: [response.data, ...posts],
+      })
+      loadingUpdater(false)
+
       textUpdater("")
       createPostVisibilityUpdater(false)
       return
     }
 
+    //images
     if (images && images.length) {
       loadingUpdater(true)
+
       const postImages = images.map((img) => dataURItoBlob(img))
       const path = `${user?.username}/post_images`
       let formData = new FormData()
       formData.append("path", path)
       postImages.forEach((img) => formData.append("file", img))
       const response = await uploadImages(formData, path, user?.token)
-      await createPost(null, null, text, response, user?.id, user?.token)
-      loadingUpdater(false)
+
       if (!response) {
         errorUpdater("Something went wrong!")
+        loadingUpdater(false)
         return
       }
+      const bigResponse = await createPost(null, null, text, response, user?.id, user?.token)
+
+      if (!bigResponse) {
+        errorUpdater("Something went wrong!")
+        loadingUpdater(false)
+        return
+      }
+
+      postsDispatcher({
+        type: profile ? profileCases.PROFILE_POSTS : postCases.POST_SUCCESS,
+        payload: [bigResponse.data, ...posts],
+      })
+      loadingUpdater(false)
       textUpdater("")
       imagesUpdater([])
       createPostVisibilityUpdater(false)
@@ -122,16 +160,16 @@ export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
   ///
   return (
     <div className="blur">
-      <div className="postBox" ref={postPopupRef}>
+      <div className="postBox controlHeight" ref={postPopupRef}>
         {error && <PostError error={error} errorUpdater={errorUpdater} />}
         <div className="box_header">
           <div className={`small_circle ${classes.createPostExitIcon}`}>
             <i
-              className="exit_icon"
+              className="exit_icon invertToWhite"
               onClick={() => createPostVisibilityUpdater(false)}
             ></i>
           </div>
-          <span>Create Post</span>
+          <span style={{color: 'var(--color-primary)'}}>Create Post</span>
         </div>
         <div className={classes.box_profile}>
           <img
@@ -144,9 +182,9 @@ export const CreatePostPopup = ({ createPostVisibilityUpdater }) => {
               {user?.first_name} {user?.last_name}
             </div>
             <div className={classes.box_privacy}>
-              <img src="../../../icons/public.png" alt="" />
+              <img className="invertToWhite" src="../../../icons/public.png" alt="" />
               <span>Public</span>
-              <i className="arrowDown_icon"></i>
+              <i className="arrowDown_icon invertToWhite"></i>
             </div>
           </div>
         </div>

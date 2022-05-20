@@ -71,6 +71,7 @@ export const LoginForm = () => {
         }
       );
       dispatch(userActions.userLoginHandler(data));
+      localStorage.setItem("registerData", null)
       Cookies.set("user", JSON.stringify(data));
       navigate("/");
       loadingUpdater(false);

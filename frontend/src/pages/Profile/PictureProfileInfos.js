@@ -1,4 +1,6 @@
 import { useRef, useState } from "react"
+import { Link } from "react-router-dom"
+import Friendship from "./Friendship"
 import { ProfilePicture } from "./profile picture/ProfilePicture"
 // import ProfilePicture from "../../components/profilePicture"
 import classes from "./Profile.module.css"
@@ -29,7 +31,7 @@ export default function ProfilePictureInfos({
                 className={`hover1 ${classes.profile_circle}`}
                 onClick={() => setShow(true)}
               >
-                <i className="camera_filled_icon"></i>
+                <i className="camera_filled_icon invertToWhite"></i>
               </div>
             )}
           </div>
@@ -40,12 +42,34 @@ export default function ProfilePictureInfos({
             <div className={classes.otherName}>
               {otherName && `${otherName.trim()}`}
             </div>
-            <div className={classes.profile_friend_count}></div>
-            <div className={classes.profile_friend_imgs}></div>
+            <div className={classes.profile_friend_count}>
+              {profile?.friends && (
+                <div className={classes.profile_card_count}>
+                  {profile?.friends?.length === 0
+                    ? ""
+                    : profile?.friends?.length === 1
+                    ? "1 Friend"
+                    : `${profile?.friends?.length} Friends`}
+                </div>
+              )}
+            </div>
+            <div className={classes.profile_friend_imgs}>
+              {profile?.friends?.slice(0, 6).map((friend, i) => (
+                <Link key={i} to={`/profile/${friend.username}`}>
+                  <img
+                    src={friend.picture}
+                    alt={`${friend.first_name}'s photo`}
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
         {visitor ? (
-          ""
+          <Friendship
+            friendshipp={profile?.friendship}
+            profileid={profile?._id}
+          />
         ) : (
           <div className={classes.profile_w_right}>
             <div className="blue_btn btn">
@@ -54,7 +78,7 @@ export default function ProfilePictureInfos({
             </div>
             <div className="gray_btn btn">
               <i className="edit_icon"></i>
-              <span>Edit profile</span>
+              <span className="whiteColor">Edit profile</span>
             </div>
           </div>
         )}

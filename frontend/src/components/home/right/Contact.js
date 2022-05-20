@@ -4,21 +4,22 @@
 ///
 /////////// HELPER FUNCTIONS
 ///
-import { useSelector } from "react-redux";
-import classes from "./RightHome.module.css";
+
+import { Link } from "react-router-dom"
+import classes from "./RightHome.module.css"
 ///
 /////////// HELPER VARIABLES
 ///
 
 ///
-export const Contact = () => {
+export const Contact = ({ friend }) => {
   /////////// VARIABLES
   ///
-const user = useSelector((state) => state.userReducer.userData);
+  
   ///
   /////////// STATES
   ///
-
+  
   ///
   /////////// CUSTOM HOOKS
   ///
@@ -26,7 +27,7 @@ const user = useSelector((state) => state.userReducer.userData);
   ///
   /////////// SIDE EFFECTS
   ///
-
+  
   ///
   /////////// IF CASES
   ///
@@ -38,16 +39,16 @@ const user = useSelector((state) => state.userReducer.userData);
   ///
   /////////// FUNCTIONS
   ///
-
+  
   ///
   return (
-    <div className={`hover3 ${classes.contact}`}>
+    <Link to={`/profile/${friend.username}`} className={`hover3 ${classes.contact}`}>
       <div className={classes.contact_img}>
-        <img src={user?.picture} alt="user picture" />
+        <img src={friend?.picture} alt="friend picture" />
       </div>
       <span>
-        {user?.first_name} {user?.last_name}
+        {friend?.first_name} {friend?.last_name}
       </span>
-    </div>
-  );
-};
+    </Link>
+  )
+}

@@ -10,6 +10,7 @@ import { useClickOutside } from "../../helpers/clickOutside"
 import {
   ArrowDown,
   Friends,
+  FriendsActive,
   Gaming,
   Home,
   HomeActive,
@@ -34,11 +35,12 @@ const rest = `hover1 ${classes.middle_icon}`
 ///
 const color = "#65676b"
 ///
-export const Header = ({page}) => {
+export const Header = ({ page, getAllPosts }) => {
   /////////// VARIABLES
   ///
   const allMenuRef = useRef()
   const userMenu = useRef()
+  const friendsLength = 0
   ///
   /////////// STATES
   ///
@@ -89,7 +91,11 @@ export const Header = ({page}) => {
   return (
     <header>
       <div className={classes.header_left}>
-        <Link to="/" className={classes.header_logo}>
+        <Link
+          to="/"
+          onClick={() => getAllPosts()}
+          className={classes.header_logo}
+        >
           <div className="circle">
             <Logo />
           </div>
@@ -115,11 +121,12 @@ export const Header = ({page}) => {
       <div className={classes.header_middle}>
         <NavLink
           to="/"
+          onClick={() => getAllPosts()}
           className={({ isActive }) =>
             isActive ? `${classes.active} ${rest}` : rest
           }
         >
-          {page === 'home' ? <HomeActive /> : <Home />}
+          {page === "home" ? <HomeActive /> : <Home />}
         </NavLink>
 
         <NavLink
@@ -128,7 +135,10 @@ export const Header = ({page}) => {
             isActive ? `${classes.active} ${rest}` : rest
           }
         >
-          <Friends color={color} />
+          {page === "friends" ? <FriendsActive /> : <Friends color={color} />}
+          {friendsLength ? (
+            <span className={classes.middle_notification}>{friendsLength}</span>
+          ) : null}
         </NavLink>
         <NavLink
           to="/watch"
@@ -157,7 +167,12 @@ export const Header = ({page}) => {
         </NavLink>
       </div>
       <div className={classes.header_right}>
-        <Link to="/profile" className={`hover1 ${classes.profile_link} ${page === 'profile' && classes.active_link}`}>
+        <Link
+          to="/profile"
+          className={`hover1 ${classes.profile_link} ${
+            page === "profile" && classes.active_link
+          }`}
+        >
           <img src={user?.picture} alt="user picture" />
           <span>{user?.first_name}</span>
         </Link>
@@ -181,7 +196,6 @@ export const Header = ({page}) => {
           <div className={classes.circle_icon_inner}>
             <Notifications />
           </div>
-          <span className={classes.right_notification}>5</span>
         </div>
         <div className={userMenuIconClasses} ref={userMenu}>
           <div className={classes.circle_icon_inner} onClick={toggleUserMenu}>

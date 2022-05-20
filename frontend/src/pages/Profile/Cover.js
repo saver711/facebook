@@ -101,7 +101,7 @@ export default function Cover({ cover, visitor, photos }) {
           user?.token
         )
 
-        if (new_post === "ok") {
+        if (new_post.status === "ok") {
           setLoading(false)
           setCoverPicture("")
 
@@ -187,9 +187,9 @@ export default function Cover({ cover, visitor, photos }) {
             </div>
 
             {showCoverMenu && (
-              <div className={classes.open_cover_menu}>
+              <div className="open_cover_menu">
                 <div
-                  className={`hover1 ${classes.open_cover_menu_item}`}
+                  className="hover1 open_cover_menu_item"
                   onClick={() => {
                     setShowCoverMenu(false)
                     setShow(true)
@@ -199,7 +199,7 @@ export default function Cover({ cover, visitor, photos }) {
                   Select Photo
                 </div>
                 <div
-                  className={`hover1 ${classes.open_cover_menu_item}`}
+                  className="hover1 open_cover_menu_item"
                   onClick={() => {
                     setShowCoverMenu(false)
                     refInput.current.click()

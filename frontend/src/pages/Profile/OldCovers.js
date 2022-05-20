@@ -21,7 +21,7 @@ export default function OldCovers({ photos, setCoverPicture, setShow }) {
               setShow(false)
             }}
           >
-            <i className="exit_icon"></i>
+            <i className="exit_icon invertToWhite"></i>
           </div>
           <span>Select photo</span>
         </div>

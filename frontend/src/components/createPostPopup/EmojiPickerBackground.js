@@ -101,6 +101,7 @@ export const EmojiPickerBackground = ({
         }`}
       >
         <textarea
+          autoFocus
           ref={textAreaRef}
           maxLength="400"
           placeholder={`What is on your mind, ${user?.first_name}`}
@@ -112,6 +113,7 @@ export const EmojiPickerBackground = ({
                 ? Math.abs(textAreaRef.current.value.length * 0.1 - 32)
                 : "0"
             }%`,
+            color: bgState ? "#000" : "",
           }}
           className={`scrollbar ${classes.post_input} ${
             type2 ? classes.input2 : ""

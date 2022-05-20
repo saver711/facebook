@@ -11,6 +11,7 @@ import { useEffect, useReducer, useState } from "react"
 import axios from "axios"
 import { postCases, postReducer } from "./helpers/reducers"
 import { ProtectedRoutes } from "./ProtectedRoutes"
+import { Friendspg } from "./pages/friends/Friendspg"
 
 ///
 /////////// HELPER VARIABLES & FUNCTIONS
@@ -20,7 +21,7 @@ import { ProtectedRoutes } from "./ProtectedRoutes"
 function App() {
   /////////// VARIABLES
   ///
-  const [{ loading, error, posts }, dispatcher] = useReducer(postReducer, {
+  const [{ loading, error, posts }, postsDispatcher] = useReducer(postReducer, {
     loading: false,
     error: "",
     posts: [],
@@ -34,6 +35,7 @@ function App() {
   /////////// STATES
   ///
   const [createPostVisibility, createPostVisibilityUpdater] = useState(false)
+  const theme = useSelector(state => state.themeReducer.theme)
 
   const whereToGoFromWelcome = user ? (
     <Navigate replace to="/" />
@@ -46,11 +48,11 @@ function App() {
   ///
   useEffect(() => {
     user && getAllPosts()
-  }, [])
+  }, [user])
   ///
   /////////// IF CASES
   ///
-
+  
   ///
   /////////// EVENTS
   ///
@@ -59,10 +61,12 @@ function App() {
   /////////// FUNCTIONS
   ///
   const getAllPosts = async () => {
+    
     try {
-      dispatcher({
+      postsDispatcher({
         type: postCases.POST_REQUEST,
       })
+      
       const { data } = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/getAllPosts`,
         {
@@ -71,23 +75,26 @@ function App() {
           },
         }
       )
-      dispatcher({
+
+      postsDispatcher({
         type: postCases.POST_SUCCESS,
         payload: data,
       })
     } catch (error) {
-      dispatcher({
+      postsDispatcher({
         type: postCases.POST_ERROR,
-        payload: error.response.data.message,
+        payload: error.response.data?.message,
       })
     }
   }
   ///
   return (
-    <>
+    <div className={theme}>
       {createPostVisibility && (
         <CreatePostPopup
           createPostVisibilityUpdater={createPostVisibilityUpdater}
+          postsDispatcher={postsDispatcher}
+          posts={posts}
         />
       )}
 
@@ -99,6 +106,8 @@ function App() {
             path="/"
             element={
               <Home
+                getAllPosts={getAllPosts}
+                loading={loading}
                 posts={posts}
                 title="Facebook"
                 createPostVisibilityUpdater={createPostVisibilityUpdater}
@@ -115,14 +124,16 @@ function App() {
             element={
               <Profile
                 createPostVisibilityUpdater={createPostVisibilityUpdater}
+                getAllPosts={getAllPosts}
               />
             }
           />
           <Route
-            path="/profile/:username/*"
+            path="/profile/:username/"
             element={
               <Profile
                 createPostVisibilityUpdater={createPostVisibilityUpdater}
+                getAllPosts={getAllPosts}
               />
             }
           />
@@ -130,12 +141,20 @@ function App() {
             path="/reset"
             element={<Reset title="Facebook | Reset password" />}
           />
+          <Route
+            path="/friends"
+            element={<Friendspg title="Facebook | Friends" />}
+          />
+          <Route
+            path="/friends/:type"
+            element={<Friendspg title="Facebook | Friends" />}
+          />
         </Route>
 
         {/* Not Found Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </div>
   )
 }
 

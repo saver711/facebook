@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classes from "../UserMenu.module.css";
 export default function SettingsPrivacy({visibleUpdater}) {
 
@@ -17,12 +18,12 @@ export default function SettingsPrivacy({visibleUpdater}) {
         <span>Settings</span>
       </div>
 
-      <div className={`hover3 ${classes.menu_item}`}>
+      <Link to='/reset' className={`hover3 ${classes.menu_item}`}>
         <div className="small_circle">
           <i className="privacy_checkup_icon"></i>
         </div>
-        <span>Privacy Checkup</span>
-      </div>
+        <span>Password Reset</span>
+      </Link>
 
       <div className={`hover3 ${classes.menu_item}`}>
         <div className="small_circle">

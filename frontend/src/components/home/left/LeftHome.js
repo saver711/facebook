@@ -63,10 +63,10 @@ export const LeftHome = ({ user }) => {
   return (
     <div className={`scrollbar ${classes.left_home}`}>
       <div className={classes.left_home_inner}>
-        <Link to="/profile" className={`hover1 ${classes.left_link}`}>
+        <Link to="/profile" className={`hover2 ${classes.left_link}`}>
           <img src={user?.picture} alt="user picture" />
           <span>
-            {user?.first_name} {user?.last_name}
+            {user?.first_name}
           </span>
         </Link>
         {left.slice(0, 8).map((link, i) => (
@@ -80,7 +80,7 @@ export const LeftHome = ({ user }) => {
         {leftHomeRestVisibility && theRest}
       </div>
       <div
-        className={`hover1 ${classes.left_link}`}
+        className={`hover3 ${classes.left_link}`}
         onClick={leftHomeVisibilityToggler}
       >
         <div className="small_circle">
@@ -99,11 +99,11 @@ export const LeftHome = ({ user }) => {
           img="../../images/insta.png"
           name="My Instagram "
         />
-        <Shortcut
+        {/* <Shortcut
           link="https://www.youtube.com"
           img="../../images/ytb.png"
           name="My Youtube channel"
-        />
+        /> */}
       </div>
       <div className="fb_copyright welcome_footer">
         <Link to="/">Privacy </Link>

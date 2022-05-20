@@ -16,7 +16,7 @@ export default function Bio({
     <div className={classes.add_bio_wrap}>
       {rel ? (
         <select
-          className={classes.select_rel}
+          className={`whiteColor ${classes.select_rel}`}
           name={name}
           value={infos?.relationship}
           onChange={handleChange}
@@ -28,7 +28,7 @@ export default function Bio({
         </select>
       ) : (
         <textarea
-        autoFocus
+          autoFocus
           placeholder={placeholder}
           name={name}
           value={infos?.[name]}

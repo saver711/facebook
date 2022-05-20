@@ -19,7 +19,6 @@ export const left = [
   {
     text: "Watch",
     img: "watch",
-    notification: "9 new videos",
   },
   {
     text: "Saved",

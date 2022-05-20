@@ -1,7 +1,7 @@
 import classes from "./Profile.module.css"
 export default function GridPosts() {
   return (
-    <div className="createPost" style={{ cursor: "auto", overflow: "hidden" }}>
+    <div className="createPostPosts" style={{ cursor: "auto", overflow: "hidden" }}>
       <div
         className="createPost_header"
         style={{ justifyContent: "space-between" }}

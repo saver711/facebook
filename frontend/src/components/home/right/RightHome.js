@@ -1,8 +1,12 @@
 /////////// IMPORTS
 ///
-import classes from "./RightHome.module.css";
-import { Dots, NewRoom, Search } from "../../../svg";
-import { Contact } from "./Contact";
+import { useEffect, useReducer } from "react"
+import { useSelector } from "react-redux"
+import { friendsCases, friendspage } from "../../../helpers/reducers"
+import { getFriendsPageInfos } from "../../../helpers/userFunctions"
+import classes from "./RightHome.module.css"
+import { Dots, NewRoom, Search } from "../../../svg"
+import { Contact } from "./Contact"
 ///
 /////////// HELPER FUNCTIONS
 ///
@@ -10,7 +14,7 @@ import { Contact } from "./Contact";
 ///
 /////////// HELPER VARIABLES
 ///
-const color = "#65676b";
+const color = "#65676b"
 ///
 export const RightHome = () => {
   /////////// VARIABLES
@@ -19,15 +23,21 @@ export const RightHome = () => {
   ///
   /////////// STATES
   ///
-
+  const [{ loading, error, data }, dispatch] = useReducer(friendspage, {
+    loading: false,
+    data: {},
+    error: "",
+  })
   ///
   /////////// CUSTOM HOOKS
   ///
-
+  const user = useSelector((state) => state.userReducer.userData)
   ///
   /////////// SIDE EFFECTS
   ///
-
+  useEffect(() => {
+    getData()
+  }, [])
   ///
   /////////// IF CASES
   ///
@@ -39,7 +49,17 @@ export const RightHome = () => {
   ///
   /////////// FUNCTIONS
   ///
+  const getData = async () => {
+    dispatch({ type: friendsCases.FRIENDS_REQUEST })
 
+    const data = await getFriendsPageInfos(user?.token)
+
+    if (data?.status === "ok") {
+      dispatch({ type: friendsCases.FRIENDS_SUCCESS, payload: data?.data })
+    } else {
+      dispatch({ type: friendsCases.FRIENDS_ERROR, payload: data?.data })
+    }
+  }
   ///
   return (
     <div className={classes.right_home}>
@@ -61,9 +81,12 @@ export const RightHome = () => {
           </div>
         </div>
         <div className={classes.contacts_list}>
-          <Contact />
+          {data?.friends?.length > 0 &&
+            data?.friends?.map((friend) => (
+              <Contact key={friend._id} friend={friend} />
+            ))}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

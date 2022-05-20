@@ -10,6 +10,7 @@ import { CreatePost } from "../../components/crete post/CreatePost"
 import { SendVerification } from "../../components/home/send verification/SendVerification"
 import { Helmet } from "react-helmet"
 import { Post } from "../../components/post/Post"
+import { BounceLoader } from "react-spinners"
 ///
 /////////// HELPER FUNCTIONS
 ///
@@ -18,7 +19,7 @@ import { Post } from "../../components/post/Post"
 /////////// HELPER VARIABLES
 ///
 
-export const Home = ({ title, createPostVisibilityUpdater, posts }) => {
+export const Home = ({getAllPosts, title, createPostVisibilityUpdater, posts, loading }) => {
   /////////// VARIABLES
   ///
 
@@ -49,13 +50,11 @@ export const Home = ({ title, createPostVisibilityUpdater, posts }) => {
 
   ///
   return (
-    <div
-      className={classes.home}
-    >
+    <div className={classes.home}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Header page='home' />
+      <Header page="home" getAllPosts={getAllPosts} />
       <LeftHome user={user} />
       <div className={classes.home_middle_container}>
         <div className={classes.home_middle}>
@@ -65,9 +64,12 @@ export const Home = ({ title, createPostVisibilityUpdater, posts }) => {
             createPostVisibilityUpdater={createPostVisibilityUpdater}
           />
           <div>
-            {posts?.map((post) => (
-              <Post key={post._id} post={post} />
-            ))}
+            <div className={classes.postsLoader}>
+              <BounceLoader loading={loading} size={40} color="#1876f2" />
+            </div>
+            {posts &&
+              posts.length > 0 &&
+              posts?.map((post) => <Post key={post._id} post={post} />)}
           </div>
         </div>
       </div>

@@ -87,11 +87,14 @@ export const ImagePreview = ({
           <div className={`${classes.add_pics_inside1} ${classes.p0}`}>
             <div className={classes.preview_actions}>
               <button className="hover1">
-                <i className="edit_icon"></i>
+                <i className="edit_icon invertToWhite"></i>
                 Edit
               </button>
               <label htmlFor="imagesInp2" className="hover1">
-                <i style={{ minWidth: "20px" }} className="addPhoto_icon"></i>
+                <i
+                  style={{ minWidth: "20px" }}
+                  className="addPhoto_icon invertToWhite"
+                ></i>
                 <span>
                   Add Photos
                   <input
@@ -106,11 +109,8 @@ export const ImagePreview = ({
                 </span>
               </label>
             </div>
-            <div
-              className="small_white_circle"
-              onClick={clearImagesHandler}
-            >
-              <i className="exit_icon"></i>
+            <div className="small_white_circle" onClick={clearImagesHandler}>
+              <i className="exit_icon invertToWhite"></i>
             </div>
             <div
               className={
@@ -168,11 +168,8 @@ export const ImagePreview = ({
           </div>
         ) : (
           <div className={classes.add_pics_inside1}>
-            <div
-              className="small_white_circle"
-              onClick={goToNormalPostHandler}
-            >
-              <i className="exit_icon"></i>
+            <div className="small_white_circle" onClick={goToNormalPostHandler}>
+              <i className="exit_icon invertToWhite"></i>
             </div>
             <label
               htmlFor="imagesId"
@@ -188,7 +185,7 @@ export const ImagePreview = ({
                 onChange={handleImages}
               />
               <div className={classes.add_circle}>
-                <i className="addPhoto_icon"></i>
+                <i className="addPhoto_icon invertToWhite"></i>
               </div>
               <span>Add Photos</span>
               <span>or drag and drop</span>
@@ -197,11 +194,9 @@ export const ImagePreview = ({
         )}
         <div className={classes.add_pics_inside2}>
           <div className={classes.add_circle}>
-            <i className="phone_icon"></i>
+            <i className="phone_icon invertToWhite"></i>
           </div>
-          <p className={classes.mobile_text}>
-            Add photos from your Phone.
-          </p>
+          <p className={classes.mobile_text}>Add photos from your Phone.</p>
           <span className={classes.addphone_btn}>Add</span>
         </div>
       </div>

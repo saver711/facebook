@@ -16,7 +16,7 @@ export default function EditDetails({
       <div className={`postBox ${classes.infosBox}`} ref={modal}>
         <div className="box_header">
           <div className="small_circle" onClick={() => setVisible(false)}>
-            <i className="exit_icon"></i>
+            <i className="exit_icon invertToWhite"></i>
           </div>
           <span>Edit Details</span>
         </div>

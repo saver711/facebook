@@ -20,12 +20,12 @@ export default function Detail({
         {value ? (
           <div className={classes.info_profile}>
             <div>
-              <img src={`../../../icons/${img}.png`} alt="" />
+              <img className="invertToWhite" src={`../../../icons/${img}.png`} alt="" />
               {value}
             </div>
             <div className={`hover1 ${classes.detail_edit_icon}`}>
 
-            <i className="edit_icon"></i>
+            <i className="edit_icon invertToWhite"></i>
             </div>
           </div>
         ) : (

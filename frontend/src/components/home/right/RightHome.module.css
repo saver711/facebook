@@ -4,6 +4,9 @@
   top: 4rem;
   width: 17vw;
 }
+.heading{
+  color: var(--color-secondary);
+}
 
 .contacts_header {
   position: relative;

@@ -1,22 +1,28 @@
-import { useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 import Picker from "emoji-picker-react"
 import classes from "./Post.module.css"
 import { useSelector } from "react-redux"
-import {useClickOutside} from '../../helpers/clickOutside'
+import { useClickOutside } from "../../helpers/clickOutside"
+import { HashLoader } from "react-spinners"
+import { uploadImages } from "../../helpers/uploadImages"
+import dataURItoBlob from "../../helpers/dataURItoBlob"
+import { comment } from "../../helpers/postFunction"
 
-export default function CreateComment() {
+export const CreateComment = forwardRef(({ postId, setComments, setCount }, ref) => {
   const [picker, setPicker] = useState(false)
   const [text, setText] = useState("")
   const [error, setError] = useState("")
   const [commentImage, setCommentImage] = useState("")
   const [cursorPosition, setCursorPosition] = useState()
-  const textRef = useRef(null)
+  const textRef = ref
   const imgInput = useRef(null)
 
   const commentEmojiRef = useRef(null)
   const user = useSelector((state) => state.userReducer.userData)
 
   useClickOutside(commentEmojiRef, () => setPicker(false))
+
+  const [loading, loadingUpdater] = useState(false)
 
   useEffect(() => {
     textRef.current.selectionEnd = cursorPosition
@@ -51,18 +57,51 @@ export default function CreateComment() {
       setCommentImage(event.target.result)
     }
   }
+
+  const handelComment = async (e) => {
+    e.preventDefault()
+    loadingUpdater(true)
+
+    let comments
+    if (commentImage != "") {
+      const img = dataURItoBlob(commentImage)
+      const path = `${user?.username}/post_images/${postId}/comments`
+      let formData = new FormData()
+      formData.append("path", path)
+      formData.append("file", img)
+      const imgComment = await uploadImages(formData, path, user?.token)
+      comments = await comment(postId, text, imgComment[0].url, user.token)
+    } else {
+      comments = await comment(postId, text, "", user.token)
+    }
+    setComments(comments)
+    setCount((prev) => ++prev)
+    loadingUpdater(false)
+    setText("")
+    setCommentImage("")
+  }
   return (
     <div className={classes.create_comment_wrap}>
       <div className={classes.create_comment}>
         <img src={user?.picture} alt="user pic" />
         <div className={classes.comment_input_wrap}>
-          <input
-            type="file"
-            hidden
-            ref={imgInput}
-            accept="image/jpeg,image/png,image/gif,image/webp"
-            onChange={handleImage}
-          />
+          <form action="" onSubmit={handelComment}>
+            <input
+              type="file"
+              hidden
+              ref={imgInput}
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              onChange={handleImage}
+            />
+
+            <input
+              type="text"
+              ref={textRef}
+              value={text}
+              placeholder="Write a comment..."
+              onChange={(e) => setText(e.target.value)}
+            />
+          </form>
           {error && (
             <div className="postError comment_error">
               <div className="postError_error">{error}</div>
@@ -71,38 +110,41 @@ export default function CreateComment() {
               </button>
             </div>
           )}
-          <input
-            type="text"
-            ref={textRef}
-            value={text}
-            placeholder="Write a comment..."
-            onChange={(e) => setText(e.target.value)}
-          />
-          <div
-            className={`hover2 ${classes.comment_circle_icon}`}
-            ref={commentEmojiRef}
-            onClick={() => {
-              setPicker((prev) => !prev)
-            }}
-          >
-              {picker && (
-                <div className="comment_emoji_picker">
-                  <Picker onEmojiClick={handleEmoji} />
-                </div>
-              )}
-              <i className="emoji_icon"></i>
+          <div className={classes.commentLoader}>
+            <HashLoader
+              style={{ width: "20px" }}
+              loading={loading}
+              size={20}
+              color="#1876f2"
+            />
           </div>
+          <div ref={commentEmojiRef}>
+            <div
+              className={`hover3 ${classes.comment_circle_icon}`}
+              onClick={() => {
+                setPicker((prev) => !prev)
+              }}
+            >
+              <i className="emoji_icon invertToWhite"></i>
+            </div>
+            {picker && (
+              <div className="comment_emoji_picker">
+                <Picker onEmojiClick={handleEmoji} />
+              </div>
+            )}
+          </div>
+
           <div
-            className={`hover2 ${classes.comment_circle_icon}`}
+            className={`hover3 ${classes.comment_circle_icon}`}
             onClick={() => imgInput.current.click()}
           >
-            <i className="camera_icon"></i>
+            <i className="camera_icon invertToWhite"></i>
           </div>
-          <div className={`hover2 ${classes.comment_circle_icon}`}>
-            <i className="gif_icon"></i>
+          <div className={`hover3 ${classes.comment_circle_icon}`}>
+            <i className="gif_icon invertToWhite"></i>
           </div>
-          <div className={`hover2 ${classes.comment_circle_icon}`}>
-            <i className="sticker_icon"></i>
+          <div className={`hover3 ${classes.comment_circle_icon}`}>
+            <i className="sticker_icon invertToWhite"></i>
           </div>
         </div>
       </div>
@@ -113,10 +155,10 @@ export default function CreateComment() {
             className={`small_white_circle ${classes.comment_img_preview_close}`}
             onClick={() => setCommentImage("")}
           >
-            <i className="exit_icon"></i>
+            <i className="exit_icon invertToWhite"></i>
           </div>
         </div>
       )}
     </div>
   )
-}
+})

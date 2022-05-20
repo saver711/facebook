@@ -1,6 +1,20 @@
-import classes from "../UserMenu.module.css";
+import classes from "../UserMenu.module.css"
+import { themeActins } from "../../../../reducers/slices/themeSlice"
+import { useDispatch, useSelector } from "react-redux"
 export default function DisplayAccessibility({ visibleUpdater }) {
-  const goBackHandler = () => visibleUpdater(0);
+
+  const goBackHandler = () => visibleUpdater(0)
+  const dispatcher = useDispatch()
+
+  const changeThemeHandler = ({target: {value}}, checking) =>{
+    localStorage.setItem('theme', value)
+    localStorage.setItem("checked", checking)
+    dispatcher(themeActins.changeTheme({ theme: value, checked: checking }))
+    
+  }
+
+  const whatToCheck = useSelector((state) => state.themeReducer.checked)
+
   return (
     <div className={classes.absolute_wrap}>
       <div className={classes.absolute_wrap_header}>
@@ -10,7 +24,7 @@ export default function DisplayAccessibility({ visibleUpdater }) {
         Display & Accessibility
       </div>
       <div className={classes.menu_main}>
-        <div className="small_circle" style={{ width: "70px", height: "40px" }}>
+        <div className="small_circle" style={{ width: "63px", height: "40px" }}>
           <i className="dark_filled_icon"></i>
         </div>
         <div className={classes.menu_col}>
@@ -23,11 +37,29 @@ export default function DisplayAccessibility({ visibleUpdater }) {
       </div>
       <label htmlFor="darkOff" className="hover1">
         <span>Off</span>
-        <input defaultChecked type="radio" name="dark" id="darkOff" />
+        <input
+          defaultChecked={
+            whatToCheck === "off" ? true : false
+          }
+          type="radio"
+          value="light"
+          onChange={(e) => changeThemeHandler(e, "off")}
+          name="dark"
+          id="darkOff"
+        />
       </label>
       <label htmlFor="darkOn" className="hover1">
         <span>On</span>
-        <input type="radio" name="dark" id="darkOn" />
+        <input
+          defaultChecked={
+            whatToCheck === "on" ? true : false
+          }
+          type="radio"
+          value="dark"
+          onChange={(e) => changeThemeHandler(e, "on")}
+          name="dark"
+          id="darkOn"
+        />
       </label>
       <label htmlFor="automatic" className="hover1">
         <div>
@@ -37,10 +69,23 @@ export default function DisplayAccessibility({ visibleUpdater }) {
             settings.
           </p>
         </div>
-        <input type="radio" name="dark" id="automatic" />
+        <input
+          defaultChecked={
+            whatToCheck === "auto" ? true : false
+          }
+          onChange={(e) => changeThemeHandler(e, "auto")}
+          value={
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          }
+          type="radio"
+          name="dark"
+          id="automatic"
+        />
       </label>
       <div className={classes.menu_main}>
-        <div className="small_circle" style={{ width: "70px", height: "40px" }}>
+        <div className="small_circle" style={{ width: "54px", height: "40px" }}>
           <i className="compact_icon"></i>
         </div>
         <div className={classes.menu_col}>
@@ -68,5 +113,5 @@ export default function DisplayAccessibility({ visibleUpdater }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

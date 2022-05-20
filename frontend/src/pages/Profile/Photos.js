@@ -44,13 +44,13 @@ export default function Photos({ photos, loading }) {
       </div>
       <div className={classes.profile_card_count}>
         {loading ? (
-          <PulseLoader color="#333" size={5} />
+          <PulseLoader color={`var(--color-secondary)`} size={5} />
         ) : photos?.total_count === 1 ? (
           "1 Photo"
         ) : photos?.total_count > 1 ? (
           `${photos?.total_count} photos`
         ) : (
-          "You have no photos yet."
+          "No photos here."
         )}
       </div>
       <div className={classes.profile_card_grid}>

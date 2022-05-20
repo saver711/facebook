@@ -76,7 +76,7 @@ export default function UpdateProfilePicture({
           user?.id,
           user?.token
         )
-        if (new_post === "ok") {
+        if (new_post.status === "ok") {
           setLoading(false)
           setImage("")
           pRef.current.style.backgroundImage = `url(${res[0].url})`
@@ -108,7 +108,7 @@ export default function UpdateProfilePicture({
     <div className={`postBox ${classes.update_img}`}>
       <div className={`box_header ${classes.box_headerFORupdate}`}>
         <div className="small_circle" onClick={() => setImage("")}>
-          <i className="exit_icon"></i>
+          <i className="exit_icon invertToWhite"></i>
         </div>
         <span>Update profile picture</span>
       </div>
@@ -137,7 +137,7 @@ export default function UpdateProfilePicture({
         </div>
         <div className={classes.slider}>
           <div className={`hover1 ${classes.slider_circle}`} onClick={zoomOut}>
-            <i className="minus_icon"></i>
+            <i className="minus_icon invertToWhite"></i>
           </div>
           <input
             type="range"
@@ -149,7 +149,7 @@ export default function UpdateProfilePicture({
             onChange={(e) => setZoom(e.target.value)}
           />
           <div className={`hover1 ${classes.slider_circle}`} onClick={zoomIn}>
-            <i className="plus_icon"></i>
+            <i className="plus_icon invertToWhite"></i>
           </div>
         </div>
       </div>
