@@ -101,6 +101,10 @@ function App() {
       <Routes>
         {/* <Routes > */}
         <Route path="/welcome/*" element={whereToGoFromWelcome} />
+          <Route
+            path="/reset"
+            element={<Reset title="Facebook | Reset password" />}
+          />
         <Route element={<ProtectedRoutes />}>
           <Route
             path="/"
@@ -136,10 +140,6 @@ function App() {
                 getAllPosts={getAllPosts}
               />
             }
-          />
-          <Route
-            path="/reset"
-            element={<Reset title="Facebook | Reset password" />}
           />
           <Route
             path="/friends"
