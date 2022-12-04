@@ -77,8 +77,8 @@ export const LoginForm = () => {
       loadingUpdater(false);
     } catch (error) {
       loadingUpdater(false);
-      // errorUpdater(error.response.data?.message);
-      errorUpdater(error?.message);
+      errorUpdater(error.response.data?.message || 'Something went wrong!');
+      // errorUpdater(error?.message);
     }
   };
   ///
