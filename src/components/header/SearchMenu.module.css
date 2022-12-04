@@ -1,0 +1,111 @@
+
+/*---Search menu-----*/
+.search_area {
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--bg-primary);
+  box-shadow: 0 12px 12px var(--shadow-1), inset 0 0 0 0 var(--shadow-inset);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 0.2s;
+  -webkit-font-smoothing: antialiased;
+  z-index: 1;
+  max-height: 70vh;
+  padding: 8px 16px 10px 6px;
+  width: 351px;
+}
+.search_results, .search_history{
+  height: 295px;
+  overflow-y: auto;
+}
+.search_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* gap: 6px; */
+}
+.search_area .search {
+  height: 41px;
+  padding: 0;
+  padding-left: 12px;
+  width: 252px;
+  gap: 4px;
+}
+.search_results{
+  padding-top: 10px;
+}
+.search_user_item i {
+  position: absolute;
+  right: 10px;
+  transform: scale(0.8);
+}
+.search_user_item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.search_user_item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.search_user_item span {
+  font-weight: 600;
+  font-size: 14px;
+}
+.search_area .search input {
+  height: 100%;
+  width: 100%;
+  padding: 0 8px 0 4px;
+  color: var(--color-primary);
+}
+.search_area .search svg {
+  transform: translateY(1px);
+}
+.search_area .search input::placeholder {
+  transform: translateY(-2px);
+}
+.search_area .search input:focus::placeholder {
+  transform: translateY(-1px);
+}
+.search_history {
+  width: 100%;
+}
+.search_history_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 14px;
+}
+.search_history_header span {
+  font-weight: 600;
+  font-size: 16px;
+}
+.search_history_header a {
+  cursor: pointer;
+  color: var(--blue-color);
+}
+
+/*---Search menu-----*/
+
+@media (max-width: 370px){
+  .search_area {
+    width: 280px;
+  }
+
+  .search_wrap{
+    gap: 6px
+  }
+}

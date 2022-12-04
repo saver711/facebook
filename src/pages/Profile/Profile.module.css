@@ -1,0 +1,626 @@
+.profile {
+  color: var(--color-primary);
+}
+
+.profile_top {
+  margin-top: 56px;
+  box-shadow: 0 1px 2px var(--shadow-1);
+  background: var(--bg-primary);
+}
+
+.profile_container {
+  max-width: 945px;
+  margin: 0 auto;
+}
+.fix {
+  flex-direction: row !important;
+}
+.profile_cover {
+  position: relative;
+  height: 350px;
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: var(--bg-secondary);
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.update_cover_wrapper {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.open_cover_update {
+  background: #fff;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.open_cover_update i {
+  transform: scale(0.9);
+  margin-top: 4px;
+}
+
+
+
+.profile_img_wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-bottom: -2.8rem;
+  
+}
+
+.profile_friend_imgs {
+  display: flex;
+  align-items: center;
+}
+
+.profile_friend_imgs img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px var(--shadow-1);
+  border: 1.5px solid #fff;
+  background-color: #fff;
+  transition: all .11s ease;
+}
+.profile_friend_imgs a:not(:first-child), .profile_friend_imgs .avatarSkeleton:not(:first-child){
+  margin-left: -10px;
+}
+
+
+.profile_friend_imgs img:hover {
+  filter: brightness(110%);
+}
+
+.profile_w_left {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 13px 0 13px;
+  clip-path: polygon(0 -5rem,
+        100% -5rem,
+        100% calc(100% - 3.5rem),
+        0 calc(100% - 3.5rem));
+}
+
+.profile_w_img {
+  position: relative;
+  z-index: 9999;
+}
+
+.profile_w_bg {
+  width: 180px;
+  height: 180px;
+  transform: translateY(-3.6rem);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  border: 2px solid #fff;
+  background: #fff;
+  cursor: pointer;
+}
+
+.profile_w_bg:hover {
+  filter: brightness(95%);
+}
+
+.profile_circle {
+  position: absolute;
+  bottom: 4.5rem;
+  right: 0.55rem;
+  background: var(--bg-third);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.profile_name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.profile_w_right {
+  display: flex;
+  gap: 8px;
+  padding: 0 18px;
+  margin-bottom: 7px;
+}
+
+
+
+/*--Menu-------*/
+.profile_menu_wrap {
+  position: relative;
+  padding: 0 2.2rem;
+}
+
+.profile_menu {
+  position: relative;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  padding: 0;
+}
+
+.profile_menu a, .profile_menu div:not(.p10_dots) {
+  height: 54px;
+  width: 78.5px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 3px 0;
+  color: var(--color-secondary);
+}
+
+.profile_menu_active {
+  height: 60px !important;
+  width: 65px !important;
+  margin: 0 !important;
+  color: var(--blue-color) !important;
+  border-bottom: 3px solid var(--blue-color);
+  border-radius: 0 !important;
+}
+
+.p10_dots {
+  background: var(--bg-third);
+  position: absolute;
+  right: 0;
+  top: 10px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.p10_dots svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+/*------ppl u may know------*/
+.profile_bottom {
+  margin-top: 1px;
+  background: var(--bg-secondary);
+}
+
+.bottom_container {
+  padding: 10px 2.2rem;
+}
+
+.peopleYouMayKnow_list {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 240px;
+}
+
+.peopleYouMayKnow {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 3px solid var(--blue-color);
+  padding: 10px 15px;
+}
+
+.peopleYouMayKnow_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.addFriendCard {
+  position: relative;
+  height: 100%;
+  width: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.addFriend_imgSmall {
+  width: 100%;
+  height: 140px;
+}
+
+.addFriend_imgSmall img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addFriend_infos {
+  padding: 6px 10px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addFriend_name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.light_blue_btnFORadd img {
+  width: 20px;
+}
+
+.peopleYouMayKnow_list .light_blue_btnFORadd {
+  color: var(--blue-color);
+}
+
+.profile_grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
+}
+
+/*------ppl u may know------*/
+.left_header_grid {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  font-size: 14px;
+}
+
+.view_type {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  cursor: pointer;
+  padding: 10px;
+}
+
+.grid2 .active {
+  color: var(--blue-color);
+  border-bottom: 2px solid var(--blue-color);
+}
+
+.otherName {
+  color: var(--color-secondary);
+  font-size: 17px;
+}
+
+.no_posts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-secondary);
+}
+
+/*--Menu-------*/
+/*-----profile card--------*/
+
+
+.profile_header_link {
+  font-weight: normal;
+  font-size: 16px;
+  color: var(--blue-color);
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.profile_header_link:hover {
+  background: var(--bg-secondary);
+}
+
+.profile_card_count {
+  color: var(--color-secondary);
+}
+
+.profile_card_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.profile_photo_card {
+  width: 100%;
+  display: flex;
+  height: 100%;
+  cursor: pointer;
+  transition: all .11s ease;
+}
+
+.profile_photo_card:hover{
+  filter: brightness(110%);
+}
+
+.profile_photo_card img {
+  width: 100%;
+  /* height: 105px; */
+  object-fit: cover;
+  transition: all .11s ease;
+  border-radius: 10px;
+}
+
+.cover_cropper {
+  height: 100%;
+}
+
+.cover_cropper img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.cover_cropper .reactEasyCrop_Container {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.save_changes_cover {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.save_changes_left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.save_changes_left i {
+  filter: invert(100%);
+}
+
+.save_changes_right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.save_changes_right button {
+  padding: 10px;
+}
+
+.save_changes_right button:first-of-type {
+  width: 100px;
+  background: #39393f;
+}
+
+.save_changes_right button:last-of-type {
+  width: 160px;
+}
+
+.selectCoverBox {
+  width: 570px !important;
+  max-width: 80vw;
+}
+
+.selectCoverBox_links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5px 15px;
+}
+
+.selectCoverBox_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px 0 10px 0;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.selectCoverBox_link.active{
+  color: var(--blue-color);
+  border-bottom: 3px solid var(--blue-color);
+}
+
+.old_pictures_wrap {
+  padding: 0 15px;
+  overflow-y: auto;
+
+  height: 550px;
+}
+
+.old_pictures_wrap h4 {
+  padding: 10px 0;
+}
+
+.old_pictures {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  gap: 10px;
+  /* justify-content: center; */
+}
+
+.old_pictures img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.old_pictures img:hover {
+  filter: brightness(110%);
+}
+
+.old_pictures:first-of-type {
+  border-bottom: 1px solid var(--bg-third);
+}
+
+/*-----profile card--------*/
+@media (max-width: 900px) {
+  .profile_w_left {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile_card_grid{
+    grid-template-columns: repeat(4, 1fr)
+  }
+
+  .profile_w_col {
+    transform: translateY(-3.6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.3rem;
+  }
+    .friendship {
+      transform: translateY(-4rem);
+    }
+  .profile_name{
+    padding-bottom: 0;
+  }
+
+  .profile_w_right {
+    transform: translateY(-3.6rem);
+  }
+
+  .profile_img_wrap {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .profile_circle {
+    right: 1rem;
+  }
+
+
+  .peopleYouMayKnow {
+    display: none;
+  }
+
+  .profile_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile_grid .createPost {
+    width: 100% !important;
+  }
+
+  .bottom_container {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  .profile_menu_wrap {
+    display: none;
+  }
+}
+
+@media (max-width: 510px) {
+  .update_cover_wrapper {
+    bottom: 3rem;
+  }
+}
+@media (max-width: 405px) {
+  .friendship {
+    flex-direction: column;
+  }
+  .profile_card_grid{
+    grid-template-columns: repeat(3, 1fr)
+  }
+}
+
+.profile_left{
+position: relative;
+top: 0;
+}
+
+.friendship {
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.friendship .blue_btn {
+  height: 34px;
+}
+
+@media (min-width: 900px) {
+  .friendship {
+    transform: translateX(-2rem);
+  }
+}
+
+/* .scrollFixed .profile_left {
+  position: fixed;
+  width: 360px;
+}
+
+.scrollFixed .profile_right {
+  margin-left: 370px;
+  width: 504px;
+} */
+
+.showLess .profile_left {
+  bottom: 10px;
+}
+
+.showMore .profile_left {
+  top: 54px;
+}
+
+
+@media (max-width: 550px){
+  .save_changes_right button:first-of-type{
+    width: 70px;
+  }
+    .save_changes_right button:last-of-type {
+      width: 104px ;
+    }
+}

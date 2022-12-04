@@ -1,0 +1,126 @@
+.reset {
+  background: var(--bg-primary);
+  height: 100vh;
+  color: var(--color-primary);
+}
+.reset_header {
+  background: var(--bg-primary);
+  box-shadow: ipx 8px 15px -7px var(--shadow-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.reset_header img {
+  width: 160px;
+}
+.right_reset {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right_reset img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.right_reset img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.reset_wrap {
+  width: 100vw;
+  padding: 14vh 0;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset_form {
+  position: relative;
+  background: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shadow-1);
+  border-radius: 5px;
+  width: 500px;
+  max-width: 88vw;
+  min-height: 250px;
+}
+
+.reset_form_header {
+  padding: 15px;
+  font-weight: 600;
+  font-size: 24px;
+  border-bottom: 1px solid var(--bg-third);
+}
+.reset_form_text {
+  padding: 15px;
+  font-size: 17px;
+}
+.reset_form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reset_form_btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px 15px 10px;
+  align-items: center;
+}
+.reset_form_btns div:first-child span {
+  display: block;
+}
+.reset_form_btns div:last-child{
+  display: flex;
+}
+
+.reset_form_btns .badBtn {
+  margin-right: 15px;
+}
+
+.reset_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 15px;
+  color: var(--color-secondary);
+}
+.reset_left {
+  padding: 15px;
+}
+.reset_grid label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
+.reset_left input {
+  width: 20px;
+  height: 20px;
+}
+.label_col {
+  display: flex;
+  flex-direction: column;
+}
+.reset_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.reset_right img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@media (min-width: 550px) {
+  .reset_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
