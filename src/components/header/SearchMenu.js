@@ -57,6 +57,7 @@ export const SearchMenu = ({ color, showSearchMenuUpdater }) => {
       resultsUpdater([])
     } else {
       const res = await searchFunc(searchTerm, user?.token)
+      console.log(`searchHandler ~ res`, res)
       resultsUpdater(res)
     }
   }
