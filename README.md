@@ -1,6 +1,6 @@
 ## Live
 
-https://facebook-clone-app.onrender.com/
+https://facebook-clone-2022-app.netlify.app/ (Needs hard refresh) || https://facebook-clone-app.onrender.com/
 
 
 ## 😃 About Me
